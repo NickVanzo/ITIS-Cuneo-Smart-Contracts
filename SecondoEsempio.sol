@@ -9,13 +9,19 @@ contract SecondoEsempio {
         owner = msg.sender;
     }
 
-    function setValore(uint256 nuovoValore) public {
+    function addValore(uint256 nuovoValore) public {
         require(msg.sender == owner, "Non sei l'owner");
         valore = nuovoValore;
     }
 
-    function getValore() public view returns (uint256) {
+    function removeValore(uint256 daTogliere) public {
         require(msg.sender != owner, "Sei l'owner");
+        require(daTogliere <= valore, "Stai togliendo troppo");
+
+        valore = valore - daTogliere;
+    }
+
+    function stampaValore() public view returns (uint256) {
         return valore;
     }
 }
